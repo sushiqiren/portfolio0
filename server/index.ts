@@ -24,6 +24,81 @@ const portfolioData = {
     avatar: "/api/placeholder/400/400"
   },
   summary: "Passionate full-stack developer with experience in modern web technologies. Skilled in React, TypeScript, Node.js, and database management. Committed to writing clean, efficient code and creating exceptional user experiences.",
+  education: [
+    {
+      degree: "Master of Information Technology",
+      gpa: "3.8",
+      institute: "Swinburne University",
+      location: "Melbourne",
+      year: "2024",
+      type: "Master's Degree"
+    },
+    {
+      degree: "Master of Environmental Engineering",
+      institute: "Tongji University",
+      location: "China",
+      year: "2006",
+      type: "Master's Degree"
+    },
+    {
+      degree: "Bachelor of Water Supply and Sewerage Engineering",
+      institute: "Tongji University",
+      location: "China",
+      year: "2003",
+      type: "Bachelor's Degree"
+    }
+  ],
+  certifications: [
+    {
+      name: "Oracle Cloud Infrastructure 2024 Generative AI Certified Professional",
+      provider: "Oracle",
+      year: "2024",
+      category: "Cloud & AI",
+      level: "Professional"
+    },
+    {
+      name: "Oracle Cloud Infrastructure 2023 Certified Foundations Associate",
+      provider: "Oracle", 
+      year: "2024",
+      category: "Cloud Infrastructure",
+      level: "Associate"
+    },
+    {
+      name: "Microsoft Azure AI Engineer Associate",
+      provider: "Microsoft",
+      year: "2024",
+      category: "AI & Machine Learning",
+      level: "Associate"
+    },
+    {
+      name: "Microsoft Azure Fundamental",
+      provider: "Microsoft",
+      year: "2023",
+      category: "Cloud Fundamentals",
+      level: "Fundamental"
+    },
+    {
+      name: "General Assembly Front-end Web Development",
+      provider: "General Assembly",
+      year: "2022",
+      category: "Web Development",
+      level: "Certificate"
+    },
+    {
+      name: "Holmesglen Cyber Security Certificate IV",
+      provider: "Holmesglen",
+      year: "2020",
+      category: "Cybersecurity",
+      level: "Certificate IV"
+    },
+    {
+      name: "CompTIA Security+",
+      provider: "CompTIA",
+      year: "2020",
+      category: "Security",
+      level: "Professional"
+    }
+  ],
   techStack: [
     {
       category: "Frontend",
@@ -91,6 +166,14 @@ app.get('/api/portfolio/projects', (req, res) => {
 
 app.get('/api/portfolio/tech-stack', (req, res) => {
   res.json(portfolioData.techStack);
+});
+
+app.get('/api/portfolio/education', (req, res) => {
+  res.json(portfolioData.education);
+});
+
+app.get('/api/portfolio/certifications', (req, res) => {
+  res.json(portfolioData.certifications);
 });
 
 // Contact form endpoint

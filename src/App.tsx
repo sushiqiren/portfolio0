@@ -1,6 +1,8 @@
 import Header from './components/Header';
 import Hero from './components/Hero';
 import About from './components/About';
+import Education from './components/Education';
+import Certifications from './components/Certifications';
 import TechStack from './components/TechStack';
 import Projects from './components/Projects';
 import Contact from './components/Contact';
@@ -13,6 +15,8 @@ function App() {
       <main>
         <Hero />
         <About />
+        <Education />
+        <Certifications />
         <TechStack />
         <Projects />
         <Contact />

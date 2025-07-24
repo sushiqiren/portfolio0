@@ -18,7 +18,7 @@ This is a full-stack portfolio website built with React, TypeScript, and Node.js
 
 ## Key Features
 - Responsive design
-- Professional portfolio sections (Hero, About, Tech Stack, Projects, Contact)
+- Professional portfolio sections (Hero, About, Education, Certifications, Tech Stack, Projects, Contact)
 - Contact form with backend integration
 - Modern UI components with hover effects and animations
 - Placeholder image integration
@@ -33,6 +33,8 @@ This is a full-stack portfolio website built with React, TypeScript, and Node.js
 ## API Endpoints
 - GET /api/portfolio - Full portfolio data
 - GET /api/portfolio/personal - Personal information
+- GET /api/portfolio/education - Education history
+- GET /api/portfolio/certifications - Professional certifications
 - GET /api/portfolio/projects - Projects list
 - GET /api/portfolio/tech-stack - Technology stack
 - POST /api/contact - Contact form submission

@@ -50,6 +50,16 @@ const Footer = () => {
                 </a>
               </li>
               <li>
+                <a href="#education" className="text-gray-400 hover:text-white transition-colors">
+                  Education
+                </a>
+              </li>
+              <li>
+                <a href="#certifications" className="text-gray-400 hover:text-white transition-colors">
+                  Certifications
+                </a>
+              </li>
+              <li>
                 <a href="#tech-stack" className="text-gray-400 hover:text-white transition-colors">
                   Tech Stack
                 </a>
