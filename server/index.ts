@@ -15,15 +15,15 @@ app.use(express.json());
 const portfolioData = {
   personal: {
     name: "Henry Zhang",
-    title: "Full-Stack Developer",
-    email: "henryzhang3192@gmail.com",
+    title: "Full-Stack Developer & Recent IT Graduate",
+    email: "hzfulilove@hotmail.com",
     phone: "+61 0451685482",
     location: "Cheltenham, Victoria, Australia",
     github: "https://github.com/sushiqiren",
-    linkedin: " https://www.linkedin.com/in/henry-zhang-melbourne",
+    linkedin: "https://www.linkedin.com/in/henry-zhang-melbourne",
     avatar: "/api/placeholder/400/400"
   },
-  summary: "Passionate full-stack developer with experience in modern web technologies. Skilled in React, TypeScript, Node.js, and database management. Committed to writing clean, efficient code and creating exceptional user experiences.",
+  summary: "Recently graduated with a Master of Information Technology from Swinburne University of Technology, equipped with a strong foundation in software engineering and web application development. Hands-on experience building scalable applications and delivering practical solutions through academic projects and professional internships. Key accomplishments include developing interactive web applications, implementing data visualization tools, and collaborating with cross-functional teams. Skilled in modern frameworks like React, backend technologies including Python, C#, PHP, .NET, Node.js, and MySQL. Passionate about creating efficient and innovative software solutions, seeking a role as a Web Developer or Software Engineer.",
   education: [
     {
       degree: "Master of Information Technology",
@@ -99,42 +99,132 @@ const portfolioData = {
       level: "Professional"
     }
   ],
+  experience: [
+    {
+      id: 1,
+      position: "Software Developer Intern",
+      company: "DARQ Room",
+      location: "Melbourne, Australia",
+      period: "June 2024 - August 2024",
+      type: "Internship",
+      description: "Developed web applications and gained hands-on experience with modern development tools and practices.",
+      responsibilities: [
+        "Collaborated with development team on web application projects",
+        "Implemented frontend features using modern JavaScript frameworks",
+        "Participated in code reviews and agile development processes",
+        "Gained practical experience with version control and deployment workflows"
+      ],
+      technologies: ["JavaScript", "React", "Git", "Web Development"]
+    },
+    {
+      id: 2,
+      position: "Casual Instructor",
+      company: "StudyLinks Education Centre",
+      location: "Melbourne, Australia",
+      period: "2023 - 2024",
+      type: "Part-time",
+      description: "Provided educational instruction and support to students in various subjects.",
+      responsibilities: [
+        "Delivered engaging lessons to students of different age groups",
+        "Developed customized learning materials and assessments",
+        "Maintained clear communication with students and parents",
+        "Adapted teaching methods to accommodate diverse learning styles"
+      ],
+      technologies: ["Educational Technology", "Communication", "Curriculum Development"]
+    },
+    {
+      id: 3,
+      position: "Casual Instructor",
+      company: "Multiple Education Centers",
+      location: "Melbourne, Australia",
+      period: "2022 - 2024",
+      type: "Part-time",
+      description: "Provided instruction across multiple educational institutions, demonstrating adaptability and diverse teaching skills.",
+      responsibilities: [
+        "Managed classes across different educational centers",
+        "Developed flexible teaching approaches for various curricula",
+        "Maintained consistent quality of instruction across multiple venues",
+        "Built strong relationships with students and educational staff"
+      ],
+      technologies: ["Teaching Methodologies", "Classroom Management", "Educational Assessment"]
+    },
+    {
+      id: 4,
+      position: "Senior Government Officer",
+      company: "Government Agency",
+      location: "China",
+      period: "2006 - 2021",
+      type: "Full-time",
+      description: "Senior administrative role with extensive experience in government operations, policy implementation, and public service.",
+      responsibilities: [
+        "Managed complex administrative processes and policy implementation",
+        "Supervised junior staff and coordinated departmental activities",
+        "Liaised with various stakeholders and government departments",
+        "Ensured compliance with regulations and administrative standards",
+        "Led initiatives for process improvement and efficiency enhancement"
+      ],
+      technologies: ["Administrative Systems", "Policy Management", "Team Leadership", "Project Coordination"]
+    }
+  ],
+  volunteerExperience: [
+    {
+      id: 1,
+      organization: "AMCCU (Australia Melbourne Chinese Christians Union)",
+      role: "Volunteer",
+      period: "2022 - Present",
+      description: "Active community volunteer contributing to cultural and religious activities.",
+      activities: [
+        "Participated in community outreach programs",
+        "Assisted with cultural events and celebrations",
+        "Provided support for community members and new immigrants",
+        "Contributed to organizational activities and fundraising efforts"
+      ]
+    }
+  ],
   techStack: [
     {
-      category: "Frontend",
-      technologies: ["React", "TypeScript", "JavaScript", "HTML5", "CSS3", "Tailwind CSS", "Next.js"]
+      category: "Programming Languages",
+      technologies: ["JavaScript", "Python", "C#", "Java", "PHP"]
     },
     {
-      category: "Backend",
-      technologies: ["Node.js", "Express.js", "Python", "RESTful APIs", "GraphQL"]
+      category: "Frameworks & Libraries",
+      technologies: ["React", ".NET", "Express.js", "Node.js"]
     },
     {
-      category: "Database",
-      technologies: ["MongoDB", "PostgreSQL", "MySQL", "Firebase"]
+      category: "Databases",
+      technologies: ["MySQL", "PostgreSQL", "MongoDB"]
     },
     {
-      category: "Tools & Others",
-      technologies: ["Git", "Docker", "AWS", "Vercel", "Jest", "Webpack", "Vite"]
+      category: "Cloud & DevOps",
+      technologies: ["Microsoft Azure", "Amazon AWS", "Oracle Cloud Infrastructure", "Docker"]
+    },
+    {
+      category: "Version Control & Tools",
+      technologies: ["Git", "GitHub", "Data Management", "Large Dataset Analysis"]
+    },
+    {
+      category: "Soft Skills",
+      technologies: ["Problem-Solving", "Team Collaboration", "Project Management", "Communication", "Adaptability", "Customer Service"]
     }
   ],
   projects: [
     {
       id: 1,
-      title: "E-Commerce Platform",
-      description: "A full-stack e-commerce platform built with React, Node.js, and MongoDB. Features include user authentication, shopping cart, payment integration, and admin dashboard.",
-      technologies: ["React", "Node.js", "MongoDB", "Express", "Stripe API"],
-      githubUrl: "https://github.com/yourusername/ecommerce-platform",
-      liveUrl: "https://your-ecommerce-demo.vercel.app",
+      title: "School Recruitment and Class Allocation Management",
+      description: "A comprehensive web application for university staff recruitment and class allocation management. Enables applicants to input details and preferences, while allowing staff to view and manage applications efficiently. Improved scheduling efficiency by 30%.",
+      technologies: ["HTML", "CSS", "JavaScript", "PHP", "MySQL"],
+      githubUrl: "https://github.com/sushiqiren/schoolRecruit",
+      liveUrl: "#",
       imageUrl: "/api/placeholder/600/400",
       featured: true
     },
     {
       id: 2,
-      title: "Task Management App",
-      description: "A collaborative task management application with real-time updates, drag-and-drop functionality, and team collaboration features.",
-      technologies: ["React", "TypeScript", "Socket.io", "PostgreSQL", "Express"],
-      githubUrl: "https://github.com/yourusername/task-manager",
-      liveUrl: "https://your-taskmanager-demo.vercel.app",
+      title: "ShopOnline - Web-based Auction System",
+      description: "A complete web-based selling and buying system implementing English Auction strategy. Features five key components: registration, login, listing, bidding, and maintenance. Successfully increased user engagement by 25%.",
+      technologies: ["HTML", "CSS", "JavaScript", "PHP", "MySQL", "Auction System"],
+      githubUrl: "https://github.com/sushiqiren/shop-online",
+      liveUrl: "#",
       imageUrl: "/api/placeholder/600/400",
       featured: true
     },
@@ -174,6 +264,13 @@ app.get('/api/portfolio/education', (req, res) => {
 
 app.get('/api/portfolio/certifications', (req, res) => {
   res.json(portfolioData.certifications);
+});
+
+app.get('/api/portfolio/experience', (req, res) => {
+  res.json({
+    experience: portfolioData.experience,
+    volunteerExperience: portfolioData.volunteerExperience
+  });
 });
 
 // Contact form endpoint

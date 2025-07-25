@@ -9,11 +9,12 @@ const Hero = () => {
             Hi, I'm <span className="text-blue-600">Henry Zhang</span>
           </h1>
           <h2 className="text-xl sm:text-2xl text-gray-600 mb-8 font-medium">
-            Full-Stack Developer
+            Full-Stack Developer & Recent IT Graduate
           </h2>
           <p className="text-lg text-gray-700 mb-12 leading-relaxed">
-            I create modern, responsive web applications using React, TypeScript, and Node.js. 
-            Passionate about clean code and exceptional user experiences.
+            Recently graduated with a Master of IT from Swinburne University. I create modern, 
+            responsive web applications using React, TypeScript, Node.js, and more. 
+            Passionate about delivering innovative software solutions and exceptional user experiences.
           </p>
           
           {/* CTA Buttons */}

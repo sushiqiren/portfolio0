@@ -1,26 +1,36 @@
-import { Code, Database, Globe, Wrench } from 'lucide-react';
+import { Code, Database, Globe, Wrench, Cloud, Users } from 'lucide-react';
 
 const TechStack = () => {
   const techCategories = [
     {
-      category: "Frontend",
-      icon: <Globe className="w-8 h-8 text-blue-600" />,
-      technologies: ["React", "TypeScript", "JavaScript", "HTML5", "CSS3", "Tailwind CSS", "Next.js"]
-    },
-    {
-      category: "Backend",
+      category: "Programming Languages",
       icon: <Code className="w-8 h-8 text-blue-600" />,
-      technologies: ["Node.js", "Express.js", "Python", "RESTful APIs", "GraphQL"]
+      technologies: ["JavaScript", "Python", "C#", "Java", "PHP"]
     },
     {
-      category: "Database",
+      category: "Frameworks & Libraries",
+      icon: <Globe className="w-8 h-8 text-blue-600" />,
+      technologies: ["React", ".NET", "Express.js", "Node.js"]
+    },
+    {
+      category: "Databases",
       icon: <Database className="w-8 h-8 text-blue-600" />,
-      technologies: ["MongoDB", "PostgreSQL", "MySQL", "Firebase"]
+      technologies: ["MySQL", "PostgreSQL", "MongoDB"]
     },
     {
-      category: "Tools & Others",
+      category: "Cloud & DevOps",
+      icon: <Cloud className="w-8 h-8 text-blue-600" />,
+      technologies: ["Microsoft Azure", "Amazon AWS", "Oracle Cloud Infrastructure", "Docker"]
+    },
+    {
+      category: "Version Control & Tools",
       icon: <Wrench className="w-8 h-8 text-blue-600" />,
-      technologies: ["Git", "Docker", "AWS", "Vercel", "Jest", "Webpack", "Vite"]
+      technologies: ["Git", "GitHub", "Data Management", "Large Dataset Analysis"]
+    },
+    {
+      category: "Soft Skills",
+      icon: <Users className="w-8 h-8 text-blue-600" />,
+      technologies: ["Problem-Solving", "Team Collaboration", "Project Management", "Communication", "Adaptability", "Customer Service"]
     }
   ];
 
@@ -29,15 +39,15 @@ const TechStack = () => {
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16">
           <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
-            Technology Stack
+            Skills & Expertise
           </h2>
           <div className="w-20 h-1 bg-blue-600 mx-auto mb-6"></div>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            Here are the technologies I work with to bring ideas to life
+            My comprehensive skill set spanning technical expertise and professional capabilities
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {techCategories.map((category, index) => (
             <div key={index} className="card hover:shadow-xl transition-shadow duration-300">
               <div className="text-center mb-6">
@@ -63,21 +73,23 @@ const TechStack = () => {
           ))}
         </div>
 
-        {/* Additional Skills */}
+        {/* Additional Highlights */}
         <div className="mt-16 text-center">
           <h3 className="text-2xl font-semibold text-gray-900 mb-8">
-            Core Competencies
+            Key Highlights
           </h3>
           <div className="flex flex-wrap justify-center gap-4">
             {[
-              "Responsive Design",
-              "RESTful APIs",
-              "Version Control",
+              "Full-Stack Development",
+              "Large Dataset Analysis",
+              "Cloud Architecture",
               "Agile Methodology",
-              "Problem Solving",
-              "Team Collaboration",
-              "Code Review",
-              "Testing & Debugging"
+              "Cross-Platform Development",
+              "API Development",
+              "Database Design",
+              "DevOps Practices",
+              "Quality Assurance",
+              "Technical Leadership"
             ].map((skill, index) => (
               <span
                 key={index}

@@ -4,21 +4,21 @@ const Projects = () => {
   const projects = [
     {
       id: 1,
-      title: "E-Commerce Platform",
-      description: "A full-stack e-commerce platform built with React, Node.js, and MongoDB. Features include user authentication, shopping cart, payment integration, and admin dashboard.",
-      technologies: ["React", "Node.js", "MongoDB", "Express", "Stripe API"],
-      githubUrl: "https://github.com/yourusername/ecommerce-platform",
-      liveUrl: "https://your-ecommerce-demo.vercel.app",
+      title: "School Recruitment and Class Allocation Management",
+      description: "A comprehensive web application for university staff recruitment and class allocation management. Enables applicants to input details and preferences, while allowing staff to view and manage applications efficiently. Improved scheduling efficiency by 30%.",
+      technologies: ["HTML", "CSS", "JavaScript", "PHP", "MySQL"],
+      githubUrl: "https://github.com/sushiqiren/schoolRecruit",
+      liveUrl: "#",
       imageUrl: "/api/placeholder/600/400",
       featured: true
     },
     {
       id: 2,
-      title: "Task Management App",
-      description: "A collaborative task management application with real-time updates, drag-and-drop functionality, and team collaboration features.",
-      technologies: ["React", "TypeScript", "Socket.io", "PostgreSQL", "Express"],
-      githubUrl: "https://github.com/yourusername/task-manager",
-      liveUrl: "https://your-taskmanager-demo.vercel.app",
+      title: "ShopOnline - Web-based Auction System",
+      description: "A complete web-based selling and buying system implementing English Auction strategy. Features five key components: registration, login, listing, bidding, and maintenance. Successfully increased user engagement by 25%.",
+      technologies: ["HTML", "CSS", "JavaScript", "PHP", "MySQL", "Auction System"],
+      githubUrl: "https://github.com/sushiqiren/shop-online",
+      liveUrl: "#",
       imageUrl: "/api/placeholder/600/400",
       featured: true
     },
@@ -178,7 +178,7 @@ const Projects = () => {
 
         <div className="text-center mt-12">
           <a
-            href="https://github.com/yourusername"
+            href="https://github.com/sushiqiren"
             target="_blank"
             rel="noopener noreferrer"
             className="btn-secondary"
