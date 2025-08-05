@@ -50,68 +50,68 @@ const Projects = () => {
   return (
     <section id="projects" className="section-padding bg-white">
       <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
+        <div className="text-center mb-12 sm:mb-16">
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
             Featured Projects
           </h2>
-          <div className="w-20 h-1 bg-blue-600 mx-auto mb-6"></div>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+          <div className="w-16 sm:w-20 h-1 bg-blue-600 mx-auto mb-4 sm:mb-6"></div>
+          <p className="text-base sm:text-lg text-gray-600 max-w-2xl mx-auto px-4">
             Here are some of the projects I've worked on during my studies and internships
           </p>
         </div>
 
         {/* Featured Projects */}
-        <div className="grid lg:grid-cols-2 gap-8 mb-16">
+        <div className="grid gap-6 sm:gap-8 lg:grid-cols-2 mb-12 sm:mb-16">
           {featuredProjects.map((project) => (
             <div
               key={project.id}
               className="card hover:shadow-xl transition-shadow duration-300 group"
             >
-              <div className="relative overflow-hidden rounded-lg mb-6">
+              <div className="relative overflow-hidden rounded-lg mb-4 sm:mb-6">
                 <img
                   src={project.imageUrl}
                   alt={project.title}
-                  className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
+                  className="w-full h-40 sm:h-48 object-cover group-hover:scale-105 transition-transform duration-300"
                 />
-                <div className="absolute top-4 right-4">
-                  <Star className="w-5 h-5 text-yellow-400 fill-current" />
+                <div className="absolute top-3 sm:top-4 right-3 sm:right-4">
+                  <Star className="w-4 h-4 sm:w-5 sm:h-5 text-yellow-400 fill-current" />
                 </div>
               </div>
               
-              <h3 className="text-xl font-semibold text-gray-900 mb-3">
+              <h3 className="text-lg sm:text-xl font-semibold text-gray-900 mb-3 leading-tight">
                 {project.title}
               </h3>
               
-              <p className="text-gray-600 mb-4 leading-relaxed">
+              <p className="text-sm sm:text-base text-gray-600 mb-4 leading-relaxed">
                 {project.description}
               </p>
               
-              <div className="flex flex-wrap gap-2 mb-6">
+              <div className="flex flex-wrap gap-2 mb-4 sm:mb-6">
                 {project.technologies.map((tech, index) => (
                   <span
                     key={index}
-                    className="px-3 py-1 bg-blue-50 text-blue-700 rounded-full text-sm font-medium"
+                    className="px-2 sm:px-3 py-1 bg-blue-50 text-blue-700 rounded-full text-xs sm:text-sm font-medium"
                   >
                     {tech}
                   </span>
                 ))}
               </div>
               
-              <div className="flex space-x-4">
+              <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
                 <a
                   href={project.githubUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center text-gray-600 hover:text-blue-600 transition-colors"
+                  className="flex items-center justify-center sm:justify-start text-gray-600 hover:text-blue-600 transition-colors py-2 sm:py-0"
                 >
                   <Github size={18} className="mr-2" />
-                  Code
+                  View Code
                 </a>
                 <a
                   href={project.liveUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center text-gray-600 hover:text-blue-600 transition-colors"
+                  className="flex items-center justify-center sm:justify-start text-gray-600 hover:text-blue-600 transition-colors py-2 sm:py-0"
                 >
                   <ExternalLink size={18} className="mr-2" />
                   Live Demo
@@ -123,16 +123,16 @@ const Projects = () => {
 
         {/* Other Projects */}
         <div>
-          <h3 className="text-2xl font-semibold text-gray-900 mb-8 text-center">
+          <h3 className="text-xl sm:text-2xl font-semibold text-gray-900 mb-6 sm:mb-8 text-center">
             Other Projects
           </h3>
-          <div className="grid md:grid-cols-2 gap-6">
+          <div className="grid gap-4 sm:gap-6 md:grid-cols-2">
             {otherProjects.map((project) => (
               <div
                 key={project.id}
                 className="card hover:shadow-lg transition-shadow duration-300"
               >
-                <h4 className="text-lg font-semibold text-gray-900 mb-3">
+                <h4 className="text-base sm:text-lg font-semibold text-gray-900 mb-3 leading-tight">
                   {project.title}
                 </h4>
                 
@@ -151,12 +151,12 @@ const Projects = () => {
                   ))}
                 </div>
                 
-                <div className="flex space-x-4 text-sm">
+                <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 text-sm">
                   <a
                     href={project.githubUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center text-gray-600 hover:text-blue-600 transition-colors"
+                    className="flex items-center justify-center sm:justify-start text-gray-600 hover:text-blue-600 transition-colors py-1"
                   >
                     <Github size={16} className="mr-1" />
                     Code
@@ -165,7 +165,7 @@ const Projects = () => {
                     href={project.liveUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center text-gray-600 hover:text-blue-600 transition-colors"
+                    className="flex items-center justify-center sm:justify-start text-gray-600 hover:text-blue-600 transition-colors py-1"
                   >
                     <ExternalLink size={16} className="mr-1" />
                     Live Demo
@@ -176,12 +176,12 @@ const Projects = () => {
           </div>
         </div>
 
-        <div className="text-center mt-12">
+        <div className="text-center mt-8 sm:mt-12">
           <a
             href="https://github.com/sushiqiren"
             target="_blank"
             rel="noopener noreferrer"
-            className="btn-secondary"
+            className="btn-secondary text-sm sm:text-base px-6 sm:px-8 py-3"
           >
             View More on GitHub
           </a>

@@ -69,36 +69,36 @@ const Contact = () => {
   return (
     <section id="contact" className="section-padding bg-gray-50">
       <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
+        <div className="text-center mb-12 sm:mb-16">
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
             Get In Touch
           </h2>
-          <div className="w-20 h-1 bg-blue-600 mx-auto mb-6"></div>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+          <div className="w-16 sm:w-20 h-1 bg-blue-600 mx-auto mb-4 sm:mb-6"></div>
+          <p className="text-base sm:text-lg text-gray-600 max-w-2xl mx-auto px-4">
             I'm always open to discussing new opportunities, interesting projects, or just having a chat about technology
           </p>
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-12">
+        <div className="grid gap-8 lg:grid-cols-2 lg:gap-12">
           {/* Contact Information */}
-          <div>
-            <h3 className="text-2xl font-semibold text-gray-900 mb-8">
+          <div className="order-2 lg:order-1">
+            <h3 className="text-xl sm:text-2xl font-semibold text-gray-900 mb-6 sm:mb-8">
               Let's Connect
             </h3>
             
-            <div className="space-y-6 mb-8">
+            <div className="space-y-4 sm:space-y-6 mb-6 sm:mb-8">
               {contactInfo.map((info, index) => (
                 <div key={index} className="flex items-center">
-                  <div className="flex-shrink-0 w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center text-blue-600">
+                  <div className="flex-shrink-0 w-10 h-10 sm:w-12 sm:h-12 bg-blue-100 rounded-lg flex items-center justify-center text-blue-600">
                     {info.icon}
                   </div>
-                  <div className="ml-4">
-                    <h4 className="text-sm font-medium text-gray-500 uppercase tracking-wide">
+                  <div className="ml-3 sm:ml-4 min-w-0 flex-1">
+                    <h4 className="text-xs sm:text-sm font-medium text-gray-500 uppercase tracking-wide">
                       {info.label}
                     </h4>
                     <a
                       href={info.href}
-                      className="text-lg text-gray-900 hover:text-blue-600 transition-colors"
+                      className="text-sm sm:text-lg text-gray-900 hover:text-blue-600 transition-colors break-all sm:break-normal"
                     >
                       {info.value}
                     </a>
