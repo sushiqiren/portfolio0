@@ -1,11 +1,50 @@
 import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
+import nodemailer from 'nodemailer';
+import fs from 'fs/promises';
+import path from 'path';
 
 dotenv.config();
 
 const app = express();
 const PORT = process.env.PORT || 3001;
+
+// Email configuration
+const transporter = nodemailer.createTransport({
+  service: 'gmail',
+  auth: {
+    user: process.env.EMAIL_USER,
+    pass: process.env.EMAIL_PASS
+  }
+});
+
+// Contact submission interface
+interface ContactSubmission {
+  id: string;
+  name: string;
+  email: string;
+  message: string;
+  timestamp: Date;
+  status: 'new' | 'read' | 'replied';
+}
+
+// File path for storing submissions
+const CONTACT_FILE = path.join(process.cwd(), 'contact-submissions.json');
+
+// Helper functions for file operations
+async function loadSubmissions(): Promise<ContactSubmission[]> {
+  try {
+    const data = await fs.readFile(CONTACT_FILE, 'utf-8');
+    return JSON.parse(data);
+  } catch (error) {
+    return [];
+  }
+}
+
+async function saveSubmissions(submissions: ContactSubmission[]): Promise<void> {
+  await fs.writeFile(CONTACT_FILE, JSON.stringify(submissions, null, 2));
+}
 
 // Middleware
 app.use(cors());
@@ -274,7 +313,7 @@ app.get('/api/portfolio/experience', (req, res) => {
 });
 
 // Contact form endpoint
-app.post('/api/contact', (req, res) => {
+app.post('/api/contact', async (req, res) => {
   const { name, email, message } = req.body;
   
   // Validate input
@@ -284,18 +323,187 @@ app.post('/api/contact', (req, res) => {
       message: 'All fields are required' 
     });
   }
+
+  // Email validation
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!emailRegex.test(email)) {
+    return res.status(400).json({
+      success: false,
+      message: 'Please provide a valid email address'
+    });
+  }
   
-  // In a real application, you would:
-  // 1. Save to database
-  // 2. Send email notification
-  // 3. Use a service like SendGrid, Nodemailer, etc.
-  
-  console.log('Contact form submission:', { name, email, message });
-  
-  res.json({ 
-    success: true, 
-    message: 'Thank you for your message! I will get back to you soon.' 
-  });
+  try {
+    // Create new submission
+    const submission: ContactSubmission = {
+      id: Date.now().toString() + Math.random().toString(36).substr(2, 9),
+      name: name.trim(),
+      email: email.trim().toLowerCase(),
+      message: message.trim(),
+      timestamp: new Date(),
+      status: 'new'
+    };
+
+    // Save to file
+    const submissions = await loadSubmissions();
+    submissions.push(submission);
+    await saveSubmissions(submissions);
+
+    // Send email notification to yourself
+    const mailOptions = {
+      from: process.env.EMAIL_USER,
+      to: process.env.EMAIL_USER, // Send to yourself
+      subject: `Portfolio Contact: ${submission.name}`,
+      html: `
+        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+          <h2 style="color: #3b82f6; border-bottom: 2px solid #3b82f6; padding-bottom: 10px;">
+            New Contact Form Submission
+          </h2>
+          
+          <div style="background: #f8fafc; padding: 20px; border-radius: 8px; margin: 20px 0;">
+            <p style="margin: 10px 0;"><strong>Name:</strong> ${submission.name}</p>
+            <p style="margin: 10px 0;"><strong>Email:</strong> 
+              <a href="mailto:${submission.email}" style="color: #3b82f6;">${submission.email}</a>
+            </p>
+            <p style="margin: 10px 0;"><strong>Submission Time:</strong> ${submission.timestamp.toLocaleString()}</p>
+          </div>
+          
+          <div style="background: #ffffff; padding: 20px; border: 1px solid #e2e8f0; border-radius: 8px;">
+            <h3 style="color: #374151; margin-top: 0;">Message:</h3>
+            <p style="line-height: 1.6; color: #4b5563;">${submission.message.replace(/\n/g, '<br>')}</p>
+          </div>
+          
+          <div style="margin-top: 20px; padding: 15px; background: #f0f9ff; border-radius: 8px; border-left: 4px solid #3b82f6;">
+            <p style="margin: 0; font-size: 14px; color: #1e40af;">
+              <strong>Reply to:</strong> ${submission.email}<br>
+              <strong>Submission ID:</strong> ${submission.id}
+            </p>
+          </div>
+          
+          <div style="margin-top: 20px; text-align: center; font-size: 12px; color: #6b7280;">
+            <p>This email was sent from your portfolio contact form.</p>
+          </div>
+        </div>
+      `
+    };
+
+    await transporter.sendMail(mailOptions);
+    
+    console.log('Contact form submission processed:', {
+      id: submission.id,
+      name: submission.name,
+      email: submission.email,
+      timestamp: submission.timestamp
+    });
+    
+    res.json({ 
+      success: true, 
+      message: 'Thank you for your message! I will get back to you soon.',
+      submissionId: submission.id
+    });
+    
+  } catch (error) {
+    console.error('Error processing contact submission:', error);
+    
+    // Still log the submission even if email fails
+    console.log('Contact form submission (email failed):', { name, email, message });
+    
+    res.status(500).json({
+      success: false,
+      message: 'There was an issue sending your message. Please try again or contact me directly.'
+    });
+  }
+});
+
+// Get all contact submissions (for your own use)
+app.get('/api/contact/submissions', async (req, res) => {
+  try {
+    const submissions = await loadSubmissions();
+    res.json({
+      success: true,
+      submissions: submissions.sort((a, b) => 
+        new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime()
+      ),
+      total: submissions.length
+    });
+  } catch (error) {
+    console.error('Error loading submissions:', error);
+    res.status(500).json({
+      success: false,
+      message: 'Failed to load submissions'
+    });
+  }
+});
+
+// Get a specific submission
+app.get('/api/contact/submissions/:id', async (req, res) => {
+  try {
+    const { id } = req.params;
+    const submissions = await loadSubmissions();
+    const submission = submissions.find(s => s.id === id);
+    
+    if (!submission) {
+      return res.status(404).json({
+        success: false,
+        message: 'Submission not found'
+      });
+    }
+    
+    res.json({
+      success: true,
+      submission
+    });
+  } catch (error) {
+    console.error('Error fetching submission:', error);
+    res.status(500).json({
+      success: false,
+      message: 'Failed to fetch submission'
+    });
+  }
+});
+
+// Update submission status
+app.patch('/api/contact/submissions/:id/status', async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { status } = req.body;
+    
+    if (!['new', 'read', 'replied'].includes(status)) {
+      return res.status(400).json({
+        success: false,
+        message: 'Invalid status. Must be: new, read, or replied'
+      });
+    }
+    
+    const submissions = await loadSubmissions();
+    const submissionIndex = submissions.findIndex(s => s.id === id);
+    
+    if (submissionIndex === -1) {
+      return res.status(404).json({
+        success: false,
+        message: 'Submission not found'
+      });
+    }
+    
+    submissions[submissionIndex].status = status;
+    await saveSubmissions(submissions);
+    
+    res.json({
+      success: true,
+      submission: submissions[submissionIndex]
+    });
+  } catch (error) {
+    console.error('Error updating submission status:', error);
+    res.status(500).json({
+      success: false,
+      message: 'Failed to update submission status'
+    });
+  }
+});
+
+// Serve dashboard for contact submissions
+app.get('/dashboard', (req, res) => {
+  res.sendFile(path.join(process.cwd(), 'dashboard.html'));
 });
 
 // Placeholder image endpoint

@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Submissions Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .submission {
+            border: 1px solid #ddd;
+            margin: 10px 0;
+            padding: 15px;
+            border-radius: 5px;
+            background: #fafafa;
+        }
+        .submission-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .status {
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+        .status.new { background: #fee; color: #c00; }
+        .status.read { background: #ffe; color: #aa0; }
+        .status.replied { background: #efe; color: #0a0; }
+        .message {
+            background: white;
+            padding: 10px;
+            border-radius: 4px;
+            margin: 10px 0;
+            white-space: pre-wrap;
+        }
+        button {
+            background: #3b82f6;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 2px;
+        }
+        button:hover { background: #2563eb; }
+        .error { color: red; }
+        .success { color: green; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Contact Submissions Dashboard</h1>
+        <div id="status"></div>
+        <button onclick="loadSubmissions()">Refresh</button>
+        <div id="submissions"></div>
+    </div>
+
+    <script>
+        async function loadSubmissions() {
+            const statusDiv = document.getElementById('status');
+            const submissionsDiv = document.getElementById('submissions');
+            
+            try {
+                statusDiv.innerHTML = 'Loading...';
+                const response = await fetch('/api/contact/submissions');
+                const data = await response.json();
+                
+                if (data.success) {
+                    statusDiv.innerHTML = `<span class="success">Loaded ${data.total} submissions</span>`;
+                    displaySubmissions(data.submissions);
+                } else {
+                    statusDiv.innerHTML = `<span class="error">Error: ${data.message}</span>`;
+                }
+            } catch (error) {
+                statusDiv.innerHTML = `<span class="error">Error: ${error.message}</span>`;
+            }
+        }
+
+        function displaySubmissions(submissions) {
+            const submissionsDiv = document.getElementById('submissions');
+            
+            if (submissions.length === 0) {
+                submissionsDiv.innerHTML = '<p>No submissions yet.</p>';
+                return;
+            }
+
+            submissionsDiv.innerHTML = submissions.map(sub => `
+                <div class="submission">
+                    <div class="submission-header">
+                        <h3>${sub.name} (${sub.email})</h3>
+                        <span class="status ${sub.status}">${sub.status.toUpperCase()}</span>
+                    </div>
+                    <p><strong>Submitted:</strong> ${new Date(sub.timestamp).toLocaleString()}</p>
+                    <div class="message">${sub.message}</div>
+                    <div>
+                        <button onclick="updateStatus('${sub.id}', 'read')">Mark as Read</button>
+                        <button onclick="updateStatus('${sub.id}', 'replied')">Mark as Replied</button>
+                        <button onclick="window.open('mailto:${sub.email}?subject=Re: Your Portfolio Inquiry')">Reply via Email</button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        async function updateStatus(id, status) {
+            try {
+                const response = await fetch(`/api/contact/submissions/${id}/status`, {
+                    method: 'PATCH',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ status })
+                });
+                
+                const data = await response.json();
+                if (data.success) {
+                    loadSubmissions(); // Refresh the list
+                } else {
+                    alert('Error updating status: ' + data.message);
+                }
+            } catch (error) {
+                alert('Error: ' + error.message);
+            }
+        }
+
+        // Load submissions on page load
+        loadSubmissions();
+    </script>
+</body>
+</html>
