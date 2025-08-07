@@ -22,26 +22,6 @@ const Projects = () => {
       imageUrl: "/api/placeholder/600/400",
       featured: true
     },
-    {
-      id: 3,
-      title: "Weather Dashboard",
-      description: "A responsive weather dashboard that displays current weather and forecasts for multiple cities using external APIs.",
-      technologies: ["JavaScript", "CSS3", "Weather API", "Chart.js"],
-      githubUrl: "https://github.com/yourusername/weather-dashboard",
-      liveUrl: "https://your-weather-demo.vercel.app",
-      imageUrl: "/api/placeholder/600/400",
-      featured: false
-    },
-    {
-      id: 4,
-      title: "University Course Planner",
-      description: "A web application to help students plan their course schedules, track progress, and manage academic requirements.",
-      technologies: ["React", "Firebase", "Material-UI", "JavaScript"],
-      githubUrl: "https://github.com/yourusername/course-planner",
-      liveUrl: "https://your-course-planner.vercel.app",
-      imageUrl: "/api/placeholder/600/400",
-      featured: false
-    }
   ];
 
   const featuredProjects = projects.filter(project => project.featured);
@@ -52,11 +32,11 @@ const Projects = () => {
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-12 sm:mb-16">
           <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
-            Featured Projects
+            My Projects
           </h2>
           <div className="w-16 sm:w-20 h-1 bg-blue-600 mx-auto mb-4 sm:mb-6"></div>
           <p className="text-base sm:text-lg text-gray-600 max-w-2xl mx-auto px-4">
-            Here are some of the projects I've worked on during my studies and internships
+            Here are the key projects I've developed during my studies and professional experience
           </p>
         </div>
 
@@ -121,60 +101,62 @@ const Projects = () => {
           ))}
         </div>
 
-        {/* Other Projects */}
-        <div>
-          <h3 className="text-xl sm:text-2xl font-semibold text-gray-900 mb-6 sm:mb-8 text-center">
-            Other Projects
-          </h3>
-          <div className="grid gap-4 sm:gap-6 md:grid-cols-2">
-            {otherProjects.map((project) => (
-              <div
-                key={project.id}
-                className="card hover:shadow-lg transition-shadow duration-300"
-              >
-                <h4 className="text-base sm:text-lg font-semibold text-gray-900 mb-3 leading-tight">
-                  {project.title}
-                </h4>
-                
-                <p className="text-gray-600 mb-4 text-sm leading-relaxed">
-                  {project.description}
-                </p>
-                
-                <div className="flex flex-wrap gap-2 mb-4">
-                  {project.technologies.map((tech, index) => (
-                    <span
-                      key={index}
-                      className="px-2 py-1 bg-gray-100 text-gray-700 rounded text-xs font-medium"
+        {/* Other Projects - Only show if there are any */}
+        {otherProjects.length > 0 && (
+          <div>
+            <h3 className="text-xl sm:text-2xl font-semibold text-gray-900 mb-6 sm:mb-8 text-center">
+              Other Projects
+            </h3>
+            <div className="grid gap-4 sm:gap-6 md:grid-cols-2">
+              {otherProjects.map((project) => (
+                <div
+                  key={project.id}
+                  className="card hover:shadow-lg transition-shadow duration-300"
+                >
+                  <h4 className="text-base sm:text-lg font-semibold text-gray-900 mb-3 leading-tight">
+                    {project.title}
+                  </h4>
+                  
+                  <p className="text-gray-600 mb-4 text-sm leading-relaxed">
+                    {project.description}
+                  </p>
+                  
+                  <div className="flex flex-wrap gap-2 mb-4">
+                    {project.technologies.map((tech, index) => (
+                      <span
+                        key={index}
+                        className="px-2 py-1 bg-gray-100 text-gray-700 rounded text-xs font-medium"
+                      >
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
+                  
+                  <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 text-sm">
+                    <a
+                      href={project.githubUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center justify-center sm:justify-start text-gray-600 hover:text-blue-600 transition-colors py-1"
                     >
-                      {tech}
-                    </span>
-                  ))}
+                      <Github size={16} className="mr-1" />
+                      Code
+                    </a>
+                    <a
+                      href={project.liveUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center justify-center sm:justify-start text-gray-600 hover:text-blue-600 transition-colors py-1"
+                    >
+                      <ExternalLink size={16} className="mr-1" />
+                      Live Demo
+                    </a>
+                  </div>
                 </div>
-                
-                <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 text-sm">
-                  <a
-                    href={project.githubUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center justify-center sm:justify-start text-gray-600 hover:text-blue-600 transition-colors py-1"
-                  >
-                    <Github size={16} className="mr-1" />
-                    Code
-                  </a>
-                  <a
-                    href={project.liveUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center justify-center sm:justify-start text-gray-600 hover:text-blue-600 transition-colors py-1"
-                  >
-                    <ExternalLink size={16} className="mr-1" />
-                    Live Demo
-                  </a>
-                </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
-        </div>
+        )}
 
         <div className="text-center mt-8 sm:mt-12">
           <a

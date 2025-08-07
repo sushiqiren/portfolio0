@@ -266,16 +266,6 @@ const portfolioData = {
       liveUrl: "#",
       imageUrl: "/api/placeholder/600/400",
       featured: true
-    },
-    {
-      id: 3,
-      title: "Weather Dashboard",
-      description: "A responsive weather dashboard that displays current weather and forecasts for multiple cities using external APIs.",
-      technologies: ["JavaScript", "CSS3", "Weather API", "Chart.js"],
-      githubUrl: "https://github.com/yourusername/weather-dashboard",
-      liveUrl: "https://your-weather-demo.vercel.app",
-      imageUrl: "/api/placeholder/600/400",
-      featured: false
     }
   ]
 };
