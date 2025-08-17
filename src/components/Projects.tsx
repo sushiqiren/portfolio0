@@ -1,27 +1,25 @@
-import { ExternalLink, Github, Star } from 'lucide-react';
+import { Github, Star } from 'lucide-react';
 
 const Projects = () => {
   const projects = [
     {
       id: 1,
-      title: "School Recruitment and Class Allocation Management",
-      description: "A comprehensive web application for university staff recruitment and class allocation management. Enables applicants to input details and preferences, while allowing staff to view and manage applications efficiently. Improved scheduling efficiency by 30%.",
-      technologies: ["HTML", "CSS", "JavaScript", "PHP", "MySQL"],
-      githubUrl: "https://github.com/sushiqiren/schoolRecruit",
-      liveUrl: "#",
-      imageUrl: "/api/placeholder/600/400",
-      featured: true
-    },
-    {
-      id: 2,
       title: "ShopOnline - Web-based Auction System",
       description: "A complete web-based selling and buying system implementing English Auction strategy. Features five key components: registration, login, listing, bidding, and maintenance. Successfully increased user engagement by 25%.",
       technologies: ["HTML", "CSS", "JavaScript", "PHP", "MySQL", "Auction System"],
       githubUrl: "https://github.com/sushiqiren/shop-online",
-      liveUrl: "#",
-      imageUrl: "/api/placeholder/600/400",
+      imageUrl: "/PHPProject.png",
       featured: true
     },
+    {
+      id: 2,
+      title: "EventEase - Blazor Event Management System",
+      description: "A comprehensive event management platform built with Blazor framework. Features event discovery, registration, user dashboard, and event management capabilities. Provides a modern web application experience with server-side rendering and interactive UI components.",
+      technologies: ["Blazor", "C#", ".NET", "Entity Framework", "Bootstrap", "SQL Server"],
+      githubUrl: "https://github.com/sushiqiren/blazorProject1",
+      imageUrl: "/blazorProject.png",
+      featured: true
+    }
   ];
 
   const featuredProjects = projects.filter(project => project.featured);
@@ -45,17 +43,39 @@ const Projects = () => {
           {featuredProjects.map((project) => (
             <div
               key={project.id}
-              className="card hover:shadow-xl transition-shadow duration-300 group"
+              className={`card hover:shadow-xl transition-shadow duration-300 group ${
+                project.id === 2 ? 'border-purple-100' : project.id === 1 ? 'border-blue-100' : ''
+              }`}
             >
               <div className="relative overflow-hidden rounded-lg mb-4 sm:mb-6">
                 <img
                   src={project.imageUrl}
                   alt={project.title}
-                  className="w-full h-40 sm:h-48 object-cover group-hover:scale-105 transition-transform duration-300"
+                  className="w-full h-64 sm:h-72 object-contain bg-gray-50 p-2 group-hover:scale-105 transition-transform duration-300"
                 />
+                {/* Enhanced overlay for different projects */}
+                {project.id === 2 && (
+                  <div className="absolute inset-0 bg-gradient-to-t from-purple-900/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                )}
+                {project.id === 1 && (
+                  <div className="absolute inset-0 bg-gradient-to-t from-blue-900/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                )}
+                
                 <div className="absolute top-3 sm:top-4 right-3 sm:right-4">
                   <Star className="w-4 h-4 sm:w-5 sm:h-5 text-yellow-400 fill-current" />
                 </div>
+                
+                {/* Technology badges for different projects */}
+                {project.id === 2 && (
+                  <div className="absolute bottom-3 left-3 bg-purple-600 text-white px-2 py-1 rounded-full text-xs font-medium shadow-lg">
+                    Blazor App
+                  </div>
+                )}
+                {project.id === 1 && (
+                  <div className="absolute bottom-3 left-3 bg-blue-600 text-white px-2 py-1 rounded-full text-xs font-medium shadow-lg">
+                    PHP Web App
+                  </div>
+                )}
               </div>
               
               <h3 className="text-lg sm:text-xl font-semibold text-gray-900 mb-3 leading-tight">
@@ -86,15 +106,6 @@ const Projects = () => {
                 >
                   <Github size={18} className="mr-2" />
                   View Code
-                </a>
-                <a
-                  href={project.liveUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center justify-center sm:justify-start text-gray-600 hover:text-blue-600 transition-colors py-2 sm:py-0"
-                >
-                  <ExternalLink size={18} className="mr-2" />
-                  Live Demo
                 </a>
               </div>
             </div>
@@ -141,15 +152,6 @@ const Projects = () => {
                     >
                       <Github size={16} className="mr-1" />
                       Code
-                    </a>
-                    <a
-                      href={project.liveUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center justify-center sm:justify-start text-gray-600 hover:text-blue-600 transition-colors py-1"
-                    >
-                      <ExternalLink size={16} className="mr-1" />
-                      Live Demo
                     </a>
                   </div>
                 </div>

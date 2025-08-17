@@ -249,22 +249,20 @@ const portfolioData = {
   projects: [
     {
       id: 1,
-      title: "School Recruitment and Class Allocation Management",
-      description: "A comprehensive web application for university staff recruitment and class allocation management. Enables applicants to input details and preferences, while allowing staff to view and manage applications efficiently. Improved scheduling efficiency by 30%.",
-      technologies: ["HTML", "CSS", "JavaScript", "PHP", "MySQL"],
-      githubUrl: "https://github.com/sushiqiren/schoolRecruit",
-      liveUrl: "#",
-      imageUrl: "/api/placeholder/600/400",
-      featured: true
-    },
-    {
-      id: 2,
       title: "ShopOnline - Web-based Auction System",
       description: "A complete web-based selling and buying system implementing English Auction strategy. Features five key components: registration, login, listing, bidding, and maintenance. Successfully increased user engagement by 25%.",
       technologies: ["HTML", "CSS", "JavaScript", "PHP", "MySQL", "Auction System"],
       githubUrl: "https://github.com/sushiqiren/shop-online",
-      liveUrl: "#",
-      imageUrl: "/api/placeholder/600/400",
+      imageUrl: "/PHPProject.png",
+      featured: true
+    },
+    {
+      id: 2,
+      title: "EventEase - Blazor Event Management System",
+      description: "A comprehensive event management platform built with Blazor framework. Features event discovery, registration, user dashboard, and event management capabilities. Provides a modern web application experience with server-side rendering and interactive UI components.",
+      technologies: ["Blazor", "C#", ".NET", "Entity Framework", "Bootstrap", "SQL Server"],
+      githubUrl: "https://github.com/sushiqiren/blazorProject1",
+      imageUrl: "/blazorProject.png",
       featured: true
     }
   ]

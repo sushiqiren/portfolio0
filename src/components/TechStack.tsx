@@ -10,7 +10,7 @@ const TechStack = () => {
     {
       category: "Frameworks & Libraries",
       icon: <Globe className="w-8 h-8 text-blue-600" />,
-      technologies: ["React", ".NET", "Express.js", "Node.js"]
+      technologies: ["React", "Blazor", ".NET", "Express.js", "Node.js"]
     },
     {
       category: "Databases",
